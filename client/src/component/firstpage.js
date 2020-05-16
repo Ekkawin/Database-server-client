@@ -9,7 +9,7 @@ export default class firstpage extends Component {
   };
 
   onClick = () => {
-    console.log('hi');
+    // console.log('hi');
     return (
       <div>
         <Result />

@@ -22,10 +22,18 @@ export default class result extends Component {
     apple: 0,
     orange: 0,
   };
-  async componentDidMount() {
-    console.log('hi');
-    this.setState({ name: this.props.name });
-    console.log(this.state.name);
+  componentDidMount() {
+    console.log('hididmount');
+    console.log(this.props.location.name);
+    const name1 = this.props.location.name;
+    console.log(name1);
+    this.setState({ name: name1 });
+    this.setState({ banana: 1 });
+    console.log(this.state);
+    this.setState((state, props) => ({
+      name: state.name + props.location.name,
+    }));
+    console.log(this.state);
   }
   render() {
     return <div>hi</div>;
