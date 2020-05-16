@@ -13,7 +13,7 @@ const obj = {
   status: 'handsome',
 };
 app.get('/apiget', async (req, res) => {
-  console.log('hi');
+  console.log(findprofile);
   res.send('hi');
 });
 app.post('/apipost', async (req, res) => {
@@ -22,13 +22,13 @@ app.post('/apipost', async (req, res) => {
   const profile = new Profile(user);
   await profile.save();
   console.log(typeof req.body);
-  res.status(201).end();
+  res.send(profile);
 });
 app.post('/apifind', async (req, res) => {
   console.log(req.body);
   const find = req.body;
   const findprofile = await Profile.findOne(find);
-  console.log(findprofile);
+  // console.log(findprofile);
   res.json(findprofile);
 });
 

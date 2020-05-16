@@ -6,6 +6,9 @@ import Result from './result';
 export default class firstpage extends Component {
   state = {
     name: '',
+    banana: 0,
+    apple: 0,
+    orange: 0,
   };
 
   onClick = () => {

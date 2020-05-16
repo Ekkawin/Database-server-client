@@ -14,6 +14,7 @@
 //       };
 
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class result extends Component {
   state = {
@@ -22,19 +23,34 @@ export default class result extends Component {
     apple: 0,
     orange: 0,
   };
-  componentDidMount() {
-    console.log('hididmount');
-    console.log(this.props.location.name);
-    const name1 = this.props.location.name;
-    console.log(name1);
-    this.setState({ name: name1 });
-    this.setState({ banana: 1 });
-    console.log(this.state);
-    this.setState((state, props) => ({
-      name: state.name + props.location.name,
-    }));
-    console.log(this.state);
+
+  async componentDidMount() {
+    const profile = await axios.post('http://localhost:5000/apifind', {
+      name: this.props.location.name,
+    });
+    console.log('Done sent');
+    if (profile.data != null) {
+      this.setState({
+        name: profile.data.name,
+        banana: profile.data.banana,
+        apple: profile.data.apple,
+        orange: profile.data.orange,
+      });
+    }
+    // const ans = await axios.get('http://localhost:5000/apiget');
+    console.log(profile);
+    // console.log(ans);
   }
+  onClick = async () => {
+    await axios.post('http://localhost:5000/apipost');
+    this.setState({
+      name: '',
+      banana: 0,
+      apple: 0,
+      orange: 0,
+    });
+  };
+
   render() {
     return <div>hi</div>;
   }
